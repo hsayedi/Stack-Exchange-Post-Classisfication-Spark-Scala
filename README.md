@@ -74,10 +74,30 @@ In the root directory of the project, run in Terminal:
 ```spark-submit --class SparkApp target/scala-2.12/spark-ml-examples_2.12-0.0.1-SNAPSHOT.jar```
 
 
-## Screenshots
+## Outputs 
+Below are some outputs after model testing. 
+
+#### Logistic Regression:
+
+![GitHub Logo](/images/LR.png)
+
+#### Decision Tree:
+
+![GitHub Logo](/images/DT.png)
+
+#### Naive Bayes:
+
+![GitHub Logo](/images/NB.png)
+
+#### ANN (Perceptron):
+
+![GitHub Logo](/images/ANN.png)
+
 
 
 ## Tech/Framework Used
+Language: Scala
+Framework: Spark 2.4.4
 
 
 
