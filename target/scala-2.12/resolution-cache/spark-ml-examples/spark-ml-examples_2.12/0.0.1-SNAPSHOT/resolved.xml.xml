@@ -4,7 +4,7 @@
 		module="spark-ml-examples_2.12"
 		revision="0.0.1-SNAPSHOT"
 		status="integration"
-		publication="20191020190436"
+		publication="20191021085438"
 	>
 		<description>
 		Spark Processing
