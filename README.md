@@ -61,8 +61,8 @@ You can verify if Spark installed properly by running the following in your Term
 ```spark-shell```
 You should see the following if installation was successful: 
 
-[image]
 
+![Alt text](/images/spark-shell.jpg?raw=true "Spark Shell")
 
 
 ## Running the code
