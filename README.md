@@ -30,25 +30,31 @@ If using a Mac, the easiest way to install the proper technologies is as follows
 
 #### 1. Install Homebrew
 In your terminal, run: 
+
 ```/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”```
 
 #### 2. Install xcode-select 
 Insstalling xcode-select allows us to install Java, Scala, and Apache Spark. In terminal, run:
+
 ```xcode-select-install```
 
 #### 3. Install Java 1.8
 In terminal, run:
+
 ```brew cask install java```
 
 #### 4. Install Scala
 In terminal, run:
+
 ```brew install scala```
 
 #### 5. Install Spark
 In terminal, run:
+
 ```brew install apache-spark```
 
 You can verify if Spark installed properly by running the following in your Terminal: 
+
 ```spark-shell```
 You should see the following if installation was successful: 
 
