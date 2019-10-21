@@ -7,7 +7,7 @@
 		revision="0.0.1-SNAPSHOT"
 		conf="test-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20191019110835"/>
+		date="20191020190436"/>
 	<dependencies>
 		<module organisation="org.apache.spark" name="spark-mllib_2.12">
 			<revision name="2.4.0" status="release" pubdate="20181029010016" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spark.apache.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="158">
@@ -2579,7 +2579,7 @@
 				<metadata-artifact status="no" details="" size="12467" time="0" location="/Users/husnasayedi/.ivy2/cache/org.apache.avro/avro-ipc/ivy-1.8.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/avro/avro-ipc/1.8.2/avro-ipc-1.8.2.pom"/>
 				<caller organisation="org.apache.avro" name="avro-mapred" conf="compile, runtime" rev="1.8.2" rev-constraint-default="1.8.2" rev-constraint-dynamic="1.8.2" callerrev="1.8.2"/>
 				<artifacts>
-					<artifact name="avro-ipc" type="jar" ext="jar" status="successful" details="" size="132989" time="1270" location="/Users/husnasayedi/.ivy2/cache/org.apache.avro/avro-ipc/jars/avro-ipc-1.8.2.jar">
+					<artifact name="avro-ipc" type="jar" ext="jar" status="no" details="" size="132989" time="0" location="/Users/husnasayedi/.ivy2/cache/org.apache.avro/avro-ipc/jars/avro-ipc-1.8.2.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/avro/avro-ipc/1.8.2/avro-ipc-1.8.2.jar"/>
 					</artifact>
 				</artifacts>
@@ -2609,7 +2609,7 @@
 				<caller organisation="org.apache.hadoop" name="hadoop-common" conf="compile, runtime" rev="1.7.4" rev-constraint-default="1.7.4" rev-constraint-dynamic="1.7.4" callerrev="2.6.5"/>
 				<caller organisation="org.apache.avro" name="avro-ipc" conf="compile, runtime" rev="1.8.2" rev-constraint-default="1.8.2" rev-constraint-dynamic="1.8.2" callerrev="1.8.2"/>
 				<artifacts>
-					<artifact name="avro" type="jar" ext="jar" status="successful" details="" size="1556863" time="1662" location="/Users/husnasayedi/.ivy2/cache/org.apache.avro/avro/jars/avro-1.8.2.jar">
+					<artifact name="avro" type="jar" ext="jar" status="no" details="" size="1556863" time="0" location="/Users/husnasayedi/.ivy2/cache/org.apache.avro/avro/jars/avro-1.8.2.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/avro/avro/1.8.2/avro-1.8.2.jar"/>
 					</artifact>
 				</artifacts>

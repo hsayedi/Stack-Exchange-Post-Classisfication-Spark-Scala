@@ -1,4 +1,7 @@
-// Gemini Data Assignment
+/*
+Gemini Data Assignment
+Husna Sayedi
+ */
 
 import org.apache.spark.ml.classification.{DecisionTreeClassifier, LogisticRegression, MultilayerPerceptronClassifier, NaiveBayes}
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
@@ -107,7 +110,7 @@ object SparkApp {
     println(numOutputCategories)
     /* specific layers for ANN:
        num of features = 1000 since HashingTF produces 1000 features
-       two intermediate of size 5 and 4
+       two intermediate layers of size 5 and 4
        the output is size of the distinct classes
      */
     val layers = Array[Int](1000, 5, 4, numOutputCategories)
@@ -166,6 +169,7 @@ object SparkApp {
       // Evaluate up to 2 parameter settings in parallel
       .setParallelism(2)
 
+
     // Get category back from label
     val labelReverse = new IndexToString()
       .setInputCol("prediction")
@@ -182,6 +186,7 @@ object SparkApp {
     // Run algorithms on test data
     model.transform(testData)
       .show()
+
   }
 
 }
@@ -197,6 +202,11 @@ on its body. Use the following algorithms:
   4. Artificial Neural Network (Perceptron)
 2. Divide seed data into 70% training / 30% validation set, while training.
 3. Then, use input_data.csv file (not labeled) as your test set and predict their category
+4. Please upload your solution to your personal github with instructions on how to run it.
+
+Notice that prediction quality would be very low due to the small seed data, we are more interested in your data problem
+solving skills.
+
 
 
  */
