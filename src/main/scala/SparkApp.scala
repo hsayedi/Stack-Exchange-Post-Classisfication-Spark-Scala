@@ -42,6 +42,8 @@ object SparkApp {
       .format("csv")
       .load("data/seed.csv")
 
+    // CLEAN DATAAAAAAA
+
     // Print the Schema of the DataFrame
     data.printSchema()
 
@@ -66,7 +68,7 @@ object SparkApp {
   def trainModels(data: DataFrame, testData: DataFrame): Unit = {
 
     println("Training Logistic Regression")
-    val lr = new LogisticRegression()
+    val lr = new LogisticRegression() // which will run the binary version across all classes and return the class with the highest score.
       .setMaxIter(10) // set maximum iterations
 
     // Hyper parameter tuning
