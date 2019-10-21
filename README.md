@@ -61,6 +61,8 @@ You can verify if Spark installed properly by running the following in your Term
 ```spark-shell```
 You should see the following if installation was successful: 
 
+![GitHub Logo](/images/spark-shell.png)
+Format: ![Alt Text](url)
 
 ![Alt text](gemini_assignment/images/spark-shell.jpg?raw=true "Spark Shell")
 
