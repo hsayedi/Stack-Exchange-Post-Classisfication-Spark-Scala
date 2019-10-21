@@ -1,6 +1,7 @@
 /*
 Gemini Data Assignment
 Husna Sayedi
+October 21 2019
  */
 
 import org.apache.spark.ml.classification.{DecisionTreeClassifier, LogisticRegression, MultilayerPerceptronClassifier, NaiveBayes}
@@ -61,7 +62,7 @@ object SparkApp {
   def trainModels(data: DataFrame, testData: DataFrame): Unit = {
 
     println("Training Logistic Regression")
-    val lr = new LogisticRegression() // which will run the binary version across all classes and return the class with the highest score.
+    val lr = new LogisticRegression() // will run the binary version across all classes and return class with highest score
       .setMaxIter(10) // set maximum iterations
 
     // Hyper parameter tuning
@@ -135,14 +136,11 @@ object SparkApp {
       .setInputCol("body")
       .setOutputCol("removeTags")
       .setPattern("<[^>]+>|\\s+")
-//    val Tokenizer = new Tokenizer() // process of taking text and breaking into terms (words)
-//      .setInputCol(regexTokenizer.getOutputCol)
-//      .setOutputCol("words")
-    val stopWordsRemover = new StopWordsRemover()
+    val stopWordsRemover = new StopWordsRemover() // removes all stop words
       .setInputCol(regexTokenizer.getOutputCol)
       .setOutputCol("removedStopWords")
     val hashingTF = new HashingTF() // maps a sequence of terms to their term frequencies using hashing trick
-      .setNumFeatures(1000)
+      .setNumFeatures(1000) // number must be more than number of distinct words/tokens
       .setInputCol(stopWordsRemover.getOutputCol)
       .setOutputCol("features")
     val indexer = new StringIndexer() // create label - convert string to number
@@ -181,14 +179,6 @@ object SparkApp {
     val holdout = model.transform(testData)
       .show()
 
-//    // Multiclass metrics
-//    val eval = new MulticlassClassificationEvaluator()
-//      .setLabelCol("label")
-//      .setPredictionCol("prediction")
-//      .setMetricName("accuracy")
-//    val accuracy = eval.evaluate(holdout)
-//    println("Test set accuracy = " + accuracy)
-
 
   }
 
@@ -209,7 +199,5 @@ on its body. Use the following algorithms:
 
 Notice that prediction quality would be very low due to the small seed data, we are more interested in your data problem
 solving skills.
-
-
 
  */
