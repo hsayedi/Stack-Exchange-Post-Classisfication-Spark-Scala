@@ -97,6 +97,7 @@ Below are some outputs after model testing.
 
 ## Tech/Framework Used
 Language: Scala
+
 Framework: Spark 2.4.4
 
 
