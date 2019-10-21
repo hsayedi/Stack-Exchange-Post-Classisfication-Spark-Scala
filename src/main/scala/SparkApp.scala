@@ -5,22 +5,20 @@ Husna Sayedi
 
 import org.apache.spark.ml.classification.{DecisionTreeClassifier, LogisticRegression, MultilayerPerceptronClassifier, NaiveBayes}
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
-import org.apache.spark.ml.feature.{HashingTF, IndexToString, RegexTokenizer, StopWordsRemover, StringIndexer, Tokenizer}
+import org.apache.spark.ml.feature.{HashingTF, IndexToString, RegexTokenizer, StopWordsRemover, StringIndexer}
 import org.apache.spark.ml.param.ParamMap
 import org.apache.spark.ml.tuning.{ParamGridBuilder, TrainValidationSplit}
 import org.apache.spark.ml.{Estimator, Pipeline, PipelineModel}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
-// Optional: Use the following code below to set/ the Error reporting
+// Optional: set the Error reporting
 import org.apache.log4j._
 
 /*
 On terminal
-sbt clean package
-
-// Run using spark-submit
-spark-submit --class SparkApp target/scala-2.12/spark-ml-examples_2.12-0.0.1-SNAPSHOT.jar
-
+  sbt clean package
+Run using spark-submit
+  spark-submit --class SparkApp target/scala-2.12/spark-ml-examples_2.12-0.0.1-SNAPSHOT.jar
  */
 
 object SparkApp {
@@ -42,13 +40,8 @@ object SparkApp {
       .format("csv")
       .load("data/seed.csv")
 
-    // CLEAN DATAAAAAAA
-
     // Print the Schema of the DataFrame
     data.printSchema()
-
-    //  data.select("_Body", "_OwnerUserId", "_Title", "_Category").show()
-    //  data.select("_Category").distinct.show()
 
     // Read the testing data
     val testData = spark.read
@@ -96,7 +89,7 @@ object SparkApp {
 
 
     println("Now training Naive Bayes Classifier")
-    val nb = new NaiveBayes() // default is multinomial. NB is best for text classification problems
+    val nb = new NaiveBayes() // Default is multinomial. NB is best for text classification problems
 
     // Hyper parameter tuning
     // We use a ParamGridBuilder to construct a grid of parameters to search over for best model selection
@@ -141,14 +134,14 @@ object SparkApp {
     val regexTokenizer = new RegexTokenizer() // first remove tags from string
       .setInputCol("body")
       .setOutputCol("removeTags")
-      .setPattern("<[^>]+>")
+      .setPattern("<[^>]+>|\\s+")
 //    val Tokenizer = new Tokenizer() // process of taking text and breaking into terms (words)
 //      .setInputCol(regexTokenizer.getOutputCol)
 //      .setOutputCol("words")
     val stopWordsRemover = new StopWordsRemover()
       .setInputCol(regexTokenizer.getOutputCol)
       .setOutputCol("removedStopWords")
-    val hashingTF = new HashingTF()
+    val hashingTF = new HashingTF() // maps a sequence of terms to their term frequencies using hashing trick
       .setNumFeatures(1000)
       .setInputCol(stopWordsRemover.getOutputCol)
       .setOutputCol("features")
@@ -163,14 +156,13 @@ object SparkApp {
      */
     val trainValidationSplit = new TrainValidationSplit()
       .setEstimator(estimator)
-      .setEvaluator(new MulticlassClassificationEvaluator() // we have 10 distinct labels - so use Multiclass evaluator
+      .setEvaluator(new MulticlassClassificationEvaluator() // we have 10 distinct labels - so use multiclass evaluator
         .setMetricName("accuracy"))
       .setEstimatorParamMaps(paramGrid) // using our parameter grids to find the optimal parameters
       // 70% of the data will be used for training and the remaining 30% for validation.
       .setTrainRatio(0.7)
-      // Evaluate up to 2 parameter settings in parallel
+      // Evaluate up to 2 parameter settings in parallel for faster processing
       .setParallelism(2)
-
 
     // Get category back from label
     val labelReverse = new IndexToString()
@@ -186,8 +178,17 @@ object SparkApp {
     val model: PipelineModel = pipeline.fit(train)
 
     // Run algorithms on test data
-    model.transform(testData)
+    val holdout = model.transform(testData)
       .show()
+
+//    // Multiclass metrics
+//    val eval = new MulticlassClassificationEvaluator()
+//      .setLabelCol("label")
+//      .setPredictionCol("prediction")
+//      .setMetricName("accuracy")
+//    val accuracy = eval.evaluate(holdout)
+//    println("Test set accuracy = " + accuracy)
+
 
   }
 
